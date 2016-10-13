@@ -10,7 +10,7 @@ public class PuntoDialog extends JDialog {
     private JTextField xValue;
     private JTextField yValue;
 
-    private int x,y;
+    private int x, y;
     Color color;
 
     public PuntoDialog(JFrame parent) throws SQLException {
@@ -50,22 +50,23 @@ public class PuntoDialog extends JDialog {
 
     private void onPintar() {
         // add your code here
-        ObtenerValores();
-        Forma f = new Punto(x,y);
-        f.setColor(color);
-        if((x < 550 && x > 50) && (y > 50 && y < 550)){
-            Main.listaFormas.add(f);
-            Main.friendLienzo.getContentPane().repaint();
-            Main.friendLienzo.getContentPane().setVisible(true);
-            Main.friendLienzo.setVisible(true);
+        try {
+            ObtenerValores();
+            Forma f = new Punto(x, y);
+            f.setColor(color);
+            if ((x < 550 && x > 50) && (y > 50 && y < 550)) {
+                Main.listaFormas.add(f);
+                Main.friendLienzo.getContentPane().repaint();
+                Main.friendLienzo.getContentPane().setVisible(true);
+                Main.friendLienzo.setVisible(true);
 
-        }else {
-            JOptionPane.showMessageDialog(null, "los valores de X o Y no pueden ser mayor que 600 o menor que 0");
+            } else {
+                JOptionPane.showMessageDialog(null, "los valores de X o Y no pueden ser mayor que 600 o menor que 0");
+            }
+        }catch (NumberFormatException n) {
+            JOptionPane.showMessageDialog(null, "Los valores no son correctos");
         }
-
-        dispose();
-        }
-
+    }
 
 
     private void onCancel() {
@@ -73,7 +74,6 @@ public class PuntoDialog extends JDialog {
         Main.friendLienzo.dispose();
         dispose();
     }
-
 
 
     private void ObtenerValores() {

@@ -58,16 +58,20 @@ public class CirculoDialog extends JDialog {
 
     private void onPintar() {
         // add your code here
-        ObtenerValores();
-        if((x < 550 && x > 50) && (y < 550 && y > 50)){
-            Punto p = new Punto(x,y);
-            Forma f = new Circulo(p,radio,color, rellenar);
-            Main.listaFormas.add(f);
-            Main.friendLienzo.getContentPane().repaint();
-            Main.friendLienzo.getContentPane().setVisible(true);
-            Main.friendLienzo.setVisible(true);
-        }else {
-            JOptionPane.showMessageDialog(null, "los valores de X o Y no pueden ser mayor que 600 o menor que 0");
+        try {
+            ObtenerValores();
+            if((x < 550 && x > 50) && (y < 550 && y > 50)){
+                Punto p = new Punto(x,y);
+                Forma f = new Circulo(p,radio,color, rellenar);
+                Main.listaFormas.add(f);
+                Main.friendLienzo.getContentPane().repaint();
+                Main.friendLienzo.getContentPane().setVisible(true);
+                Main.friendLienzo.setVisible(true);
+            }else {
+                JOptionPane.showMessageDialog(null, "los valores de X o Y no pueden ser mayor que 600 o menor que 0");
+            }
+        }catch (NumberFormatException n){
+            JOptionPane.showMessageDialog(null, "Los valores no son correctos");
         }
 
     }
@@ -105,7 +109,7 @@ public class CirculoDialog extends JDialog {
         y = Integer.parseInt(yValue.getText());
         radio = Integer.parseInt(radioValue.getText());
         color = (Color) colores.getSelectedItem();
-        respuesta = (String) resRellenar.getSelectedItem();
+        respuesta = resRellenar.getSelectedItem().toString();
         if(respuesta == "Si"){
             rellenar = true;
         }else{

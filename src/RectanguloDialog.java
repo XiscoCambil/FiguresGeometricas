@@ -61,21 +61,24 @@ public class RectanguloDialog extends JDialog {
 
     private void onPintar() {
         // add your code here
-        ObtenerValores();
-        if (heigth == width) {
-            JOptionPane.showMessageDialog(null, "Esto son las medidas de un cuadrado no de un Rectangulo");
-        } else {
-            if ((x < 550 && x > 50) && (y < 550 && y > 50)) {
-                Punto p = new Punto(x,y);
-                Forma f = new Rectangulo(p, width, heigth, color, rellenar);
-                Main.listaFormas.add(f);
-                Main.friendLienzo.getContentPane().repaint();
-                Main.friendLienzo.getContentPane().setVisible(true);
-                Main.friendLienzo.setVisible(true);
+        try{
+            ObtenerValores();
+            if (heigth == width) {
+                JOptionPane.showMessageDialog(null, "Esto son las medidas de un cuadrado no de un Rectangulo");
             } else {
-                JOptionPane.showMessageDialog(null, "los valores de X o Y no pueden ser mayor que 600 o menor que 0");
+                if ((x < 550 && x > 50) && (y < 550 && y > 50)) {
+                    Punto p = new Punto(x,y);
+                    Forma f = new Rectangulo(p, width, heigth, color, rellenar);
+                    Main.listaFormas.add(f);
+                    Main.friendLienzo.getContentPane().repaint();
+                    Main.friendLienzo.getContentPane().setVisible(true);
+                    Main.friendLienzo.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "los valores de X o Y no pueden ser mayor que 600 o menor que 0");
+                }
             }
-
+        }catch (NumberFormatException n) {
+            JOptionPane.showMessageDialog(null, "Los valores no son correctos");
         }
     }
 

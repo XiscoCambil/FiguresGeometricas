@@ -62,15 +62,19 @@ public class PoligonoDialog extends JDialog {
     }
 
     private void onPintar() {
-        ObtenerValores();
-        if((punto1.getX() < 550 && punto1.getX() > 50) && (punto1.getY() < 550 && punto1.getY() > 50)){
-            Forma f = new Poligono(punto1,punto2,punto3,puntas,color, rellenar);
-            Main.listaFormas.add(f);
-            Main.friendLienzo.getContentPane().repaint();
-            Main.friendLienzo.getContentPane().setVisible(true);
-            Main.friendLienzo.setVisible(true);
-        }else {
-            JOptionPane.showMessageDialog(null, "los valores de X o Y no pueden ser mayor que 600 o menor que 0");
+        try{
+            ObtenerValores();
+            if((punto1.getX() < 550 && punto1.getX() > 50) && (punto1.getY() < 550 && punto1.getY() > 50)){
+                Forma f = new Poligono(punto1,punto2,punto3,puntas,color, rellenar);
+                Main.listaFormas.add(f);
+                Main.friendLienzo.getContentPane().repaint();
+                Main.friendLienzo.getContentPane().setVisible(true);
+                Main.friendLienzo.setVisible(true);
+            }else {
+                JOptionPane.showMessageDialog(null, "los valores de X o Y no pueden ser mayor que 600 o menor que 0");
+            }
+        }catch (NumberFormatException n){
+            JOptionPane.showMessageDialog(null, "Los valores no son correctos");
         }
     }
 
