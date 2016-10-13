@@ -1,22 +1,19 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by blackwidow on 13/10/16.
  */
-public class LienzoHistorial extends JPanel {
-    private JPanel lienzo;
-    private Forma forma;
+public class LienzoHistorial extends Lienzo {
 
-    public void paint (Graphics g)
-    {
-        super.paint(g);
+    public void paint (Graphics g) {
         Main.friendLienzo.setTitle("Lienzo historial");
-        for (int i = 0; i < Main.listaFormas.size() ; i++) {
-            forma = Main.listaFormas.get(i);
-            forma.pintarForma(g);
+            for (int i = 0; i < Main.listaFormas.size() ; i++) {
+                setForma(Main.listaFormas.get(i));
+                getForma().pintarForma(g);
+            }
         }
-        final Lienzo lienzo = new Lienzo();
     }
 
-}

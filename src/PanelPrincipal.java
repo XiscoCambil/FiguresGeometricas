@@ -113,12 +113,16 @@ public class PanelPrincipal {
         historialDeFigurasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                try{
-                    final LienzoHistorial lienzoHistorial = new LienzoHistorial();
-                    Main.friendLienzo.setContentPane(lienzoHistorial);
-                    Main.friendLienzo.setVisible(true);
-                }catch (Exception e){
-                    e.getMessage();
+                if(Main.listaFormas.size() <= 0){
+                    JOptionPane.showMessageDialog(null, "No hay niguna forma en el historial");
+                }else{
+                    try{
+                        final LienzoHistorial lienzoHistorial = new LienzoHistorial();
+                        Main.friendLienzo.setContentPane(lienzoHistorial);
+                        Main.friendLienzo.setVisible(true);
+                    }catch (Exception e){
+                        e.getMessage();
+                    }
                 }
             }
         });

@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * Created by blackwidow on 6/10/16.
  */
-public class Poligono extends Forma {
+public class Poligono extends Forma implements Relleno {
 
     private int[] varX = new int[3];
     private int[] varY = new int[3];
@@ -24,6 +24,11 @@ public class Poligono extends Forma {
 
     @Override
     public void pintarForma(Graphics g) {
+       Rellenar(rellenar,g);
+    }
+
+    @Override
+    public void Rellenar(boolean hayRelleno, Graphics g) {
         g.setColor(getColor());
         if (rellenar) {
             g.fillPolygon(varX, varY, nPuntas);

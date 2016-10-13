@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * Created by blackwidow on 6/10/16.
  */
-public class Circulo extends Area {
+public class Circulo extends Area implements Relleno{
 
     public Circulo(Punto punto, int radio, Color color, boolean respuesta) {
         setColor(color);
@@ -15,6 +15,11 @@ public class Circulo extends Area {
 
     @Override
     public void pintarForma(Graphics g) {
+        Rellenar(isRellenar(),g);
+    }
+
+    @Override
+    public void Rellenar(boolean hayRelleno, Graphics g) {
         g.setColor(getColor());
         if (isRellenar()) {
             g.fillOval(getPunto().getX(), getPunto().getY(), getWidth(), getHeight());

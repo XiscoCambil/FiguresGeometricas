@@ -14,15 +14,22 @@ public class Main {
 
         final Lienzo lienzo = new Lienzo();
 
-        Runnable guiThread = (new Runnable() {
+        Runnable guiThread = new Runnable() {
             public void run() {
                 pp = new PanelPrincipal();
                 //Create and set up the window.
                 friendLienzo = new JFrame("Lienzo");
-                friendLienzo.setBounds(100, 100, 600, 600);
+                friendLienzo.setSize(500,500);
                 friendLienzo.setContentPane(lienzo);
+                friendLienzo.getContentPane().setVisible(true);
+                friendLienzo.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                        friendLienzo.setContentPane(lienzo);
+                    }
+                });
             }
-        });
+        };
 
         try {
             SwingUtilities.invokeAndWait(guiThread);
@@ -31,6 +38,5 @@ public class Main {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-
     }
 }
